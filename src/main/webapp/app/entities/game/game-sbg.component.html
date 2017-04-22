@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Games</span>
+        <button class="btn btn-primary float-right create-game-sbg" [routerLink]="['/', { outlets: { popup: ['game-sbg-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Game
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="games">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span>Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ndlvalue"><span>Ndlvalue</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="strategicvalue"><span>Strategicvalue</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="width"><span>Width</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="height"><span>Height</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="board"><span>Board</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="goals"><span>Goals</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let game of games ;trackBy: trackId">
+                <td><a [routerLink]="['../game-sbg', game.id ]">{{game.id}}</a></td>
+                <td>{{game.name}}</td>
+                <td>{{game.ndlvalue}}</td>
+                <td>{{game.strategicvalue}}</td>
+                <td>{{game.width}}</td>
+                <td>{{game.height}}</td>
+                <td>{{game.board}}</td>
+                <td>{{game.goals}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../game-sbg', game.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game-sbg/'+ game.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game-sbg/'+ game.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="games && games.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

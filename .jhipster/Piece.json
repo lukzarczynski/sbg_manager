@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "game",
+            "otherEntityName": "game",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "piece"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "regex",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170422151516",
+    "entityTableName": "piece",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "sbg"
+}

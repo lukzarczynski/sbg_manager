@@ -1,0 +1,11 @@
+version: '2'
+services:
+    sbg_manager-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/sbg_manager/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=sbg_manager
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

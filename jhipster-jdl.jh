@@ -1,0 +1,30 @@
+entity Game {
+	name String required
+    ndl_value Long
+    strategic_value Long
+    width Integer required
+    height Integer required
+    board String required
+    goals String required
+}
+
+entity Piece {
+	name String
+    regex String
+    value Long
+}
+
+relationship ManyToMany {
+	Game{piece} to Piece{game}
+}
+
+
+// Set pagination options
+paginate Piece, Game with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with sbg
